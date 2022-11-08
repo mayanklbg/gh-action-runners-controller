@@ -1,3 +1,19 @@
+
+
+===== Install helm chart =====
+
+````
+ helm install cert-manager . --namespace cert-manager \
+  --create-namespace \
+  --kube-insecure-skip-tls-verify
+````
+----
+````
+helm install [chart-name] --namespace [namespace]  --create-namespace . \
+  --set "authSecret.github_token=<Token>" \
+  --kube-insecure-skip-tls-verify
+````
+
 ====For Organization Runners===
 ````
 ---
