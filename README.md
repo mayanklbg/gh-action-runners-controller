@@ -37,3 +37,38 @@ spec:
     type: TotalNumberOfQueuedAndInProgressWorkflowRuns
     repositoryNames:
     - test-runners-1
+
+===== For repository level runners ====
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: lbg-platform-runner
+  namespace: actions-runner-java
+spec:
+  # replicas: 5
+  template:
+    spec:
+      repository: mayanklbg/mortgage-java
+      labels:
+        - lbg-platform-linux
+        - lbg-platform-runner
+      env: []
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: lbg-platform-runner-autoscaler
+  namespace: actions-runner-java
+spec:
+  scaleTargetRef:
+    name: lbg-platform-runner
+  scaleDownDelaySecondsAfterScaleOut: 300
+  minReplicas: 4
+  maxReplicas: 50
+  metrics:
+  - scaleDownFactor: "0.5"
+    scaleDownThreshold: "0.2"
+    scaleUpFactor: "2"
+    scaleDownThreshold: "0.5"
+    type: TotalNumberOfQueuedAndInProgressWorkflowRuns
