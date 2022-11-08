@@ -1,5 +1,5 @@
 ====For Organization Runners===
-
+````
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
@@ -37,8 +37,9 @@ spec:
     type: TotalNumberOfQueuedAndInProgressWorkflowRuns
     repositoryNames:
     - test-runners-1
-
+````
 ===== For repository level runners ====
+````
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
@@ -72,3 +73,4 @@ spec:
     scaleUpFactor: "2"
     scaleDownThreshold: "0.5"
     type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+````
